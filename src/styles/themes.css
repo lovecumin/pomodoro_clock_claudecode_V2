@@ -1,0 +1,106 @@
+/* ============================================================
+ * themes.css — 基于「浅色 UI 配色方案」重写
+ *
+ * 色板来源：
+ *   主色      #C65A4A   温暖陶土红
+ *   背景      #F7F2EC   暖米白
+ *   辅助      #EAE3DB   暖灰
+ *   浅辅助    #F1E8E0   浅暖粉
+ *   高亮      #F8DCCF   蜜桃高亮
+ *   弱化      #D9D2CC   柔灰
+ *   文本      #6F655E   暖棕灰
+ *   分割线    #E5E0DA   暖边框
+ * ============================================================ */
+
+/* ===== 默认浅色主题（温暖风格） ===== */
+[data-theme="light"] {
+  --bg-primary: #F7F2EC;
+  --bg-secondary: #F1E8E0;
+  --bg-titlebar: #EAE3DB;
+  --bg-card: #FFFFFF;
+  --bg-tab: #EAE3DB;
+  --bg-hover: #F8DCCF;
+  --bg-active: rgba(198, 90, 74, 0.08);
+
+  --text-primary: #6F655E;
+  --text-secondary: #A69E96;
+
+  --accent: #C65A4A;
+  --accent-hover: #B04A3C;
+  --accent-glow: rgba(198, 90, 74, 0.25);
+
+  --border: #E5E0DA;
+  --timer-bg: #EAE3DB;
+
+  --danger: #C65A4A;
+  --success: #7BAE7F;
+
+  --tag-bg: rgba(198, 90, 74, 0.1);
+  --tag-text: #C65A4A;
+
+  --shadow-sm: 0 1px 3px rgba(111, 101, 94, 0.06);
+  --shadow-md: 0 4px 12px rgba(111, 101, 94, 0.08);
+  --shadow-lg: 0 8px 24px rgba(111, 101, 94, 0.1);
+}
+
+/* ===== 深色主题（暖棕调） ===== */
+[data-theme="dark"] {
+  --bg-primary: #1E1A17;
+  --bg-secondary: #262119;
+  --bg-titlebar: #1A1614;
+  --bg-card: #2E2821;
+  --bg-tab: #242019;
+  --bg-hover: #3A332B;
+  --bg-active: rgba(198, 130, 100, 0.1);
+
+  --text-primary: #E8DFD6;
+  --text-secondary: #9A8E82;
+
+  --accent: #D4845A;
+  --accent-hover: #E09A70;
+  --accent-glow: rgba(212, 132, 90, 0.3);
+
+  --border: #3A332B;
+  --timer-bg: #2A241D;
+
+  --danger: #D4845A;
+  --success: #8BBE8F;
+
+  --tag-bg: rgba(212, 132, 90, 0.15);
+  --tag-text: #E0A882;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== 护眼绿主题（森林调） ===== */
+[data-theme="green"] {
+  --bg-primary: #E8EDE5;
+  --bg-secondary: #DCE5D7;
+  --bg-titlebar: #D4DEC9;
+  --bg-card: #F2F6EF;
+  --bg-tab: #D4DEC9;
+  --bg-hover: #C8D8BF;
+  --bg-active: rgba(90, 130, 74, 0.08);
+
+  --text-primary: #4A5940;
+  --text-secondary: #7A8E6E;
+
+  --accent: #5A824A;
+  --accent-hover: #4A723C;
+  --accent-glow: rgba(90, 130, 74, 0.25);
+
+  --border: #C8D4BF;
+  --timer-bg: #D4DEC9;
+
+  --danger: #C65A4A;
+  --success: #5A824A;
+
+  --tag-bg: rgba(90, 130, 74, 0.12);
+  --tag-text: #5A824A;
+
+  --shadow-sm: 0 1px 3px rgba(74, 89, 64, 0.06);
+  --shadow-md: 0 4px 12px rgba(74, 89, 64, 0.08);
+  --shadow-lg: 0 8px 24px rgba(74, 89, 64, 0.1);
+}

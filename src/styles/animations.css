@@ -1,0 +1,72 @@
+/* ============================================================
+ * animations.css — 温暖柔和风格动画
+ * ============================================================ */
+
+/* ===== 脉冲动画（计时中） ===== */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.015); }
+}
+
+.timer-circle-wrapper.pulsing {
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+/* ===== 淡入 ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.task-item {
+  animation: fadeIn 0.35s ease-out;
+}
+
+/* ===== 滑入 ===== */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.tab-content.active {
+  animation: slideIn 0.25s ease-out;
+}
+
+/* ===== 完成时光晕 ===== */
+@keyframes glowPulse {
+  0% { filter: drop-shadow(0 0 8px var(--accent-glow)); }
+  50% { filter: drop-shadow(0 0 24px var(--accent-glow)); }
+  100% { filter: drop-shadow(0 0 8px var(--accent-glow)); }
+}
+
+.timer-progress.completed {
+  animation: glowPulse 1.2s ease-in-out 3;
+}
+
+/* ===== 按钮点击 ===== */
+.ctrl-btn:active {
+  transform: scale(0.94) !important;
+}
+
+/* ===== 数字弹跳 ===== */
+@keyframes numberPop {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+.stat-number.pop {
+  animation: numberPop 0.4s ease-out;
+}
+
+/* ===== 抖动（输入错误） ===== */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+.task-input.error {
+  animation: shake 0.3s ease-out;
+  border-color: #C65A4A !important;
+}

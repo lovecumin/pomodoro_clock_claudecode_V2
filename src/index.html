@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com;">
+  <title>番茄钟</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/themes.css">
+  <link rel="stylesheet" href="styles/animations.css">
+</head>
+<body>
+  <!-- 自定义标题栏 -->
+  <div class="titlebar">
+    <div class="titlebar-title">🍅 番茄钟</div>
+    <div class="titlebar-controls">
+      <button class="titlebar-btn" id="btn-minimize">─</button>
+      <button class="titlebar-btn" id="btn-maximize">□</button>
+      <button class="titlebar-btn btn-close" id="btn-close">✕</button>
+    </div>
+  </div>
+
+  <div class="app-container">
+    <!-- 左侧：计时器区域 -->
+    <div class="timer-panel">
+      <!-- 模式切换 -->
+      <div class="mode-tabs">
+        <button class="mode-tab active" data-mode="work">专注</button>
+        <button class="mode-tab" data-mode="shortBreak">短休</button>
+        <button class="mode-tab" data-mode="longBreak">长休</button>
+      </div>
+
+      <!-- 圆形计时器 -->
+      <div class="timer-circle-wrapper">
+        <svg class="timer-svg" viewBox="0 0 260 260">
+          <circle class="timer-bg" cx="130" cy="130" r="120" />
+          <circle class="timer-progress" cx="130" cy="130" r="120" />
+        </svg>
+        <div class="timer-display">
+          <span class="timer-time" id="timer-time">25:00</span>
+          <span class="timer-label" id="timer-label">准备开始</span>
+        </div>
+      </div>
+
+      <!-- 控制按钮 -->
+      <div class="timer-controls">
+        <button class="ctrl-btn" id="btn-reset" title="重置">↺</button>
+        <button class="ctrl-btn btn-main" id="btn-start" title="开始">▶</button>
+        <button class="ctrl-btn" id="btn-skip" title="跳过">⏭</button>
+      </div>
+
+      <!-- 当前任务 -->
+      <div class="current-task">
+        <span class="current-task-label">当前任务：</span>
+        <span class="current-task-name" id="current-task-name">点击右侧选择任务</span>
+      </div>
+
+      <!-- 白噪音控制 -->
+      <div class="sound-panel">
+        <div class="sound-header">
+          <span class="sound-icon">🎵</span>
+          <span>背景音</span>
+        </div>
+        <div class="sound-options">
+          <button class="sound-btn" data-sound="none">关闭</button>
+          <button class="sound-btn" data-sound="rain">🌧 雨声</button>
+          <button class="sound-btn" data-sound="ocean">🌊 海浪</button>
+          <button class="sound-btn" data-sound="forest">🌲 森林</button>
+          <button class="sound-btn" data-sound="cafe">☕ 咖啡馆</button>
+        </div>
+        <div class="volume-control">
+          <span class="volume-icon">🔊</span>
+          <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="50">
+          <span class="volume-value" id="volume-value">50%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右侧面板 -->
+    <div class="side-panel">
+      <!-- Tab 切换 -->
+      <div class="side-tabs">
+        <button class="side-tab active" data-tab="tasks">任务</button>
+        <button class="side-tab" data-tab="stats">统计</button>
+        <button class="side-tab" data-tab="settings">设置</button>
+      </div>
+
+      <!-- 任务面板 -->
+      <div class="tab-content active" id="tab-tasks">
+        <div class="task-input-area">
+          <input type="text" class="task-input" id="task-input" placeholder="添加新任务..." maxlength="50">
+          <select class="task-tag-select" id="task-tag-select">
+            <option value="工作">💼 工作</option>
+            <option value="学习">📚 学习</option>
+            <option value="阅读">📖 阅读</option>
+            <option value="运动">🏃 运动</option>
+            <option value="创作">🎨 创作</option>
+            <option value="其他">📌 其他</option>
+          </select>
+          <button class="task-add-btn" id="task-add-btn">+</button>
+        </div>
+        <div class="task-list" id="task-list">
+          <!-- 动态渲染 -->
+        </div>
+      </div>
+
+      <!-- 统计面板 -->
+      <div class="tab-content" id="tab-stats">
+        <div class="stats-summary">
+          <div class="stat-card">
+            <div class="stat-number" id="stat-today">0</div>
+            <div class="stat-label">今日番茄</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="stat-week">0</div>
+            <div class="stat-label">本周番茄</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="stat-total">0</div>
+            <div class="stat-label">总计番茄</div>
+          </div>
+        </div>
+        <div class="chart-area">
+          <canvas id="chart-daily" width="400" height="180"></canvas>
+        </div>
+        <div class="chart-area">
+          <canvas id="chart-tags" width="400" height="180"></canvas>
+        </div>
+      </div>
+
+      <!-- 设置面板 -->
+      <div class="tab-content" id="tab-settings">
+        <div class="settings-list">
+          <div class="setting-item">
+            <label>专注时长（分钟）</label>
+            <input type="number" class="setting-input" id="setting-work" min="1" max="120" value="25">
+          </div>
+          <div class="setting-item">
+            <label>短休息时长（分钟）</label>
+            <input type="number" class="setting-input" id="setting-short" min="1" max="30" value="5">
+          </div>
+          <div class="setting-item">
+            <label>长休息时长（分钟）</label>
+            <input type="number" class="setting-input" id="setting-long" min="1" max="60" value="15">
+          </div>
+          <div class="setting-item">
+            <label>长休息间隔（个番茄）</label>
+            <input type="number" class="setting-input" id="setting-interval" min="2" max="10" value="4">
+          </div>
+          <div class="setting-item">
+            <label>主题</label>
+            <select class="setting-input" id="setting-theme">
+              <option value="light" selected>🌅 温暖浅色</option>
+              <option value="dark">🌑 暖棕深色</option>
+              <option value="green">🌿 清新绿</option>
+            </select>
+          </div>
+          <div class="setting-item">
+            <label>完成时自动开始下一个</label>
+            <input type="checkbox" class="setting-checkbox" id="setting-auto-start">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/sound.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/notification.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
