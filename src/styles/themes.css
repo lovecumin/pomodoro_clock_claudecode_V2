@@ -1,49 +1,65 @@
 /* ============================================================
- * themes.css — 基于「浅色 UI 配色方案」重写
+ * themes.css — 「晨光番茄」主题设计
+ *
+ * 设计理念：
+ *   以温暖、自然、清爽为基调
+ *   体现工作与休息的节奏感
  *
  * 色板来源：
- *   主色      #C65A4A   温暖陶土红
- *   背景      #F7F2EC   暖米白
- *   辅助      #EAE3DB   暖灰
- *   浅辅助    #F1E8E0   浅暖粉
- *   高亮      #F8DCCF   蜜桃高亮
- *   弱化      #D9D2CC   柔灰
- *   文本      #6F655E   暖棕灰
- *   分割线    #E5E0DA   暖边框
+ *   主色      #FF6B4A   番茄红（专注、活力）
+ *   背景      #FFF8F0   温暖象牙白
+ *   辅助      #FFF3E8   浅暖橙
+ *   卡片      #FFFFFF   纯白
+ *   边框      #E8DDD3   淡米色
+ *   文字      #2D4A3E   深森林绿（护眼、清晰）
+ *   次要文字  #8B9A8E   灰绿
+ *   高亮      #FFAA5C   橙黄（次要强调）
+ *   休息模式  #F4A7A7   粉红（放松、轻柔）
+ *   成功      #7BAE7F   自然绿
+ *   危险      #FF6B4A   番茄红
  * ============================================================ */
 
-/* ===== 默认浅色主题（温暖风格） ===== */
+/* ===== 默认浅色主题 — 晨光番茄 ===== */
 [data-theme="light"] {
-  --bg-primary: #F7F2EC;
-  --bg-secondary: #F1E8E0;
-  --bg-titlebar: #EAE3DB;
+  --bg-primary: #FFF8F0;
+  --bg-secondary: #FFF3E8;
+  --bg-titlebar: #FFE8D6;
   --bg-card: #FFFFFF;
-  --bg-tab: #EAE3DB;
-  --bg-hover: #F8DCCF;
-  --bg-active: rgba(198, 90, 74, 0.08);
+  --bg-tab: #FFF3E8;
+  --bg-hover: #FFE8D6;
+  --bg-active: rgba(255, 107, 74, 0.1);
 
-  --text-primary: #6F655E;
-  --text-secondary: #A69E96;
+  --text-primary: #2D4A3E;
+  --text-secondary: #8B9A8E;
 
-  --accent: #C65A4A;
-  --accent-hover: #B04A3C;
-  --accent-glow: rgba(198, 90, 74, 0.25);
+  --accent: #FF6B4A;
+  --accent-hover: #E05535;
+  --accent-glow: rgba(255, 107, 74, 0.2);
 
-  --border: #E5E0DA;
-  --timer-bg: #EAE3DB;
+  --border: #E8DDD3;
+  --timer-bg: #FFF3E8;
 
-  --danger: #C65A4A;
+  --danger: #FF6B4A;
   --success: #7BAE7F;
 
-  --tag-bg: rgba(198, 90, 74, 0.1);
-  --tag-text: #C65A4A;
+  --tag-bg: rgba(255, 107, 74, 0.12);
+  --tag-text: #FF6B4A;
 
-  --shadow-sm: 0 1px 3px rgba(111, 101, 94, 0.06);
-  --shadow-md: 0 4px 12px rgba(111, 101, 94, 0.08);
-  --shadow-lg: 0 8px 24px rgba(111, 101, 94, 0.1);
+  --shadow-sm: 0 1px 4px rgba(45, 74, 62, 0.05);
+  --shadow-md: 0 4px 16px rgba(45, 74, 62, 0.08);
+  --shadow-lg: 0 8px 32px rgba(45, 74, 62, 0.12);
+
+  /* 新增：计时器渐变 */
+  --timer-gradient-start: #FF6B4A;
+  --timer-gradient-end: #FFAA5C;
+  --timer-pulse-glow: rgba(255, 107, 74, 0.3);
+
+  /* 休息模式色彩 */
+  --break-color: #F4A7A7;
+  --break-glow: rgba(244, 167, 167, 0.3);
 }
 
-/* ===== 深色主题（暖棕调） ===== */
+/* ===== 深色主题 — 保持原有暖棕调 ===== */
 [data-theme="dark"] {
   --bg-primary: #1E1A17;
   --bg-secondary: #262119;
@@ -51,7 +67,7 @@
   --bg-card: #2E2821;
   --bg-tab: #242019;
   --bg-hover: #3A332B;
-  --bg-active: rgba(198, 130, 100, 0.1);
+  --bg-active: rgba(212, 132, 90, 0.1);
 
   --text-primary: #E8DFD6;
   --text-secondary: #9A8E82;
@@ -72,9 +88,16 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  --timer-gradient-start: #D4845A;
+  --timer-gradient-end: #E09A70;
+  --timer-pulse-glow: rgba(212, 132, 90, 0.4);
+
+  --break-color: #E0A0A0;
+  --break-glow: rgba(224, 160, 160, 0.4);
 }
 
-/* ===== 护眼绿主题（森林调） ===== */
+/* ===== 护眼绿主题 — 森林调 ===== */
 [data-theme="green"] {
   --bg-primary: #E8EDE5;
   --bg-secondary: #DCE5D7;
@@ -103,4 +126,11 @@
   --shadow-sm: 0 1px 3px rgba(74, 89, 64, 0.06);
   --shadow-md: 0 4px 12px rgba(74, 89, 64, 0.08);
   --shadow-lg: 0 8px 24px rgba(74, 89, 64, 0.1);
+
+  --timer-gradient-start: #5A824A;
+  --timer-gradient-end: #8BBE8F;
+  --timer-pulse-glow: rgba(90, 130, 74, 0.3);
+
+  --break-color: #A8C8A0;
+  --break-glow: rgba(168, 200, 160, 0.3);
 }
